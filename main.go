@@ -32,6 +32,13 @@ func main() {
 	// Register routes
 	router.RegisterRoutes(protected)
 
+	// Root path to verify running status
+	r.GET("/", func(c *gin.Context) {
+		c.JSON(200, gin.H{
+			"message": "API is running!",
+		})
+	})
+
 	// Run server
 	port := os.Getenv("PORT")
 	if port == "" {
